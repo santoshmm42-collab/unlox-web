@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Fetch Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #movie-container {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 400px;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Movie Details</h1>
+
+    <div id="movie-container"></div>
+
+    <script>
+        async function getMovie(movieTitle) {
+
+            let url = `https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=b2789f59`;
+
+            try {
+                let res = await fetch(url);
+                let data = await res.json();
+
+                console.log(data);
+
+                let container = document.getElementById("movie-container");
+
+                if (data.Response === "True") {
+                    container.innerHTML = `
+                        <h2>${data.Title}</h2>
+                        <img src="${data.Poster}" alt="${data.Title}">
+                        <p><strong>Year:</strong> ${data.Year}</p>
+                        <p><strong>Genre:</strong> ${data.Genre}</p>
+                        <p><strong>Director:</strong> ${data.Director}</p>
+                        <p><strong>IMDb Rating:</strong> ${data.imdbRating}</p>
+                        <p><strong>Plot:</strong> ${data.Plot}</p>
+                    `;
+                } else {
+                    container.innerHTML = "<h3>Movie not found!</h3>";
+                }
+            }
+            catch (error) {
+                console.log("Error fetching movie data:", error);
+            }
+        }
+
+        getMovie("Avengers: Endgame");
+
+        function extraTask() {
+            console.log("Welcome to Qualifiers");
+        }
+
+        functionHandleSearch() {
+            let movieTitle = prompt("Enter a movie title:");
+            if (movieTitle) {
+                getMovie(movieTitle);
+            }
+        }
+    </script>
+
+</body>
+</html>
