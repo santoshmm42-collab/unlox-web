@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+    <h1>Rock Paper Scissors Game</h1>
+
+    <button onclick="playGame('Rock')">Rock</button>
+    <button onclick="playGame('Paper')">Paper</button>
+    <button onclick="playGame('Scissors')">Scissors</button>
+
+    <p id="result"></p>
+
+    <h3>Score Board</h3>
+
+    <p>Wins: <span id="wins">0</span></p>
+    <p>Losses: <span id="losses">0</span></p>
+    <p>Draws: <span id="draws">0</span></p>
+
+    <script>
+
+        let wins = 0;
+        let losses = 0;
+        let draws = 0;
+
+        function playGame(userChoice) {
+
+            const choices = ["Rock", "Paper", "Scissors"];
+
+            const computerChoice =
+                choices[Math.floor(Math.random() * 3)];
+
+            let resultMessage = "";
+
+            // Game Logic
+
+            if (userChoice === computerChoice) {
+
+                resultMessage =
+                    "It's a Draw! Computer chose " + computerChoice;
+
+                draws++;
+
+            }
+            else if (
+                (userChoice === "Rock" && computerChoice === "Scissors") ||
+                (userChoice === "Paper" && computerChoice === "Rock") ||
+                (userChoice === "Scissors" && computerChoice === "Paper")
+            ) {
+
+                resultMessage =
+                    "You Win! Computer chose " + computerChoice;
+
+                wins++;
+
+            }
+            else {
+
+                resultMessage =
+                    "You Lose! Computer chose " + computerChoice;
+
+                losses++;
+            }
+
+            // Display Result
+
+            document.getElementById("result").textContent =
+                resultMessage;
+
+            // Update Score
+
+            document.getElementById("wins").textContent = wins;
+
+            document.getElementById("losses").textContent = losses;
+
+            document.getElementById("draws").textContent = draws;
+        }
+
+    </script>
+
+</body>
+</html>

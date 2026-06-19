@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+</head>
+<body>
+
+    <p id="text">Hi Everyone</p>
+
+    <button id="btn">Login</button>
+
+    <div id="Mydiv" style="display:none"></div>
+
+    <script>
+        const ele = document.getElementById("text");
+        console.log(ele);
+
+        ele.textContent = "Hello Everyone";
+
+        const button = document.getElementById("btn");
+        button.textContent = "Logout";
+
+        button.addEventListener("click", function () {
+
+            console.log("Button Clicked");
+
+            const ele2 = document.getElementById("Mydiv");
+
+            ele2.innerHTML = `
+                <p>Welcome Students <mark>Students</mark></p>
+                <em>Have a great day</em><br>
+                <button>Click Me</button>
+            `;
+
+            if (ele2.style.display === "none") {
+                ele2.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+</head>
+<body>
+
+    <p id="myid" class="myclass">This is the Paragraph</p>
+
+    <script>
+        const ele = document.getElementById("myid");
+        console.log(ele);
+        console.log(ele.textContent);
+
+        const abc = document.getElementsByClassName("myclass");
+        console.log(abc);
+
+        const xyz = document.getElementsByTagName("p");
+        console.log(xyz);
+
+        const pqr = document.querySelector(".myclass");
+        console.log(pqr);
+    </script>
+
+</body>
+</html>
